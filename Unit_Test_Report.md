@@ -31,14 +31,11 @@
 | Test Case ID | Objective | Input | Expected Output | Notes | 
 |---|---|---|---|---|
 | TC_UT_Minh_001 | Validate registration | email=minh.qa@example.com, password=StrongPass123 | Returns is_valid=True and a 64-bit hash string | Includes validation of email, password, and hashing |
-| TC_UT_Minh_002 | Reject email with incorrect format |
-email=minh-at-example.com, password=StrongPass123 | Returns is_valid=False, message="Email not in the correct format" | Validate email input |
+| TC_UT_Minh_002 | Reject email with incorrect format | email=minh-at-example.com, password=StrongPass123 | Returns is_valid=False, message="Email not in the correct format" | Validate email input |
 | TC_UT_Minh_003 | Reject password too short | email=minh.qa@example.com, password=1234567 | Return is_valid=False, message="Password must be between 8 and 64 characters" | Validate minimum password length |
-| TC_UT_Minh_004 | Checking hash stability |
-plain_password=SamePassword! | Two hashes of the same input produce the same output | Confirm deterministic encryption logic |
+| TC_UT_Minh_004 | Checking hash stability | plain_password=SamePassword! | Two hashes of the same input produce the same output | Confirm deterministic encryption logic |
 | TC_UT_Minh_005 | Search for movies with pagination | keyword=batman, page=1, page_size=1 | total_items=2, total_pages=2, items[0].title="The Batman" | Comprehensive search + pagination |
-| TC_UT_Minh_006 | Search with non-existent keyword |
-keyword=not-found-keyword, page=1, page_size=5 | total_items=0, items=[] | Enclose empty data branch |
+| TC_UT_Minh_006 | Search with non-existent keyword | keyword=not-found-keyword, page=1, page_size=5 | total_items=0, items=[] | Enclose empty data branch |
 | TC_UT_Minh_007 | Catch invalid page_size error | keyword=batman, page=1, page_size=0 | Raise ValueError("page_size must be greater than 0") | Cover pagination parameter validation |
 | TC_UT_Minh_008 | Chat sent successfully: saved to DB + emit realtime | sender_id=user_001, room_id=room_support, content valid | There is a record in the DB and ws_client.emit was called with the correct parameters | Used MagicMock to check realtime |
 | TC_UT_Minh_009 | Reject empty chat | content=" " | Raise ValueError("Chat content cannot be empty"), do not emit | Cover validate input chat |
